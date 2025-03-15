@@ -108,6 +108,10 @@ PrefabInstance:
       value: 264
       objectReference: {fileID: 0}
     - target: {fileID: 2817010484915668333, guid: b38f7129a6eefb243892b37292066bf6, type: 3}
+      propertyPath: _damageMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2817010484915668333, guid: b38f7129a6eefb243892b37292066bf6, type: 3}
       propertyPath: _fireParticleProxy
       value: 
       objectReference: {fileID: 146992, guid: ccf324d7c7b8ab44b9bfd9ddd1c56d87, type: 3}
@@ -136,11 +140,11 @@ PrefabInstance:
       value: 3405691972
       objectReference: {fileID: 0}
     - target: {fileID: 5572498687454977085, guid: b38f7129a6eefb243892b37292066bf6, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[0]'
       value: -3141545644912743181
       objectReference: {fileID: 0}
     - target: {fileID: 5572498687454977085, guid: b38f7129a6eefb243892b37292066bf6, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[1]'
       value: -4791250392029506901
       objectReference: {fileID: 0}
     - target: {fileID: 6541554458687429442, guid: b38f7129a6eefb243892b37292066bf6, type: 3}
