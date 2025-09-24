@@ -172,7 +172,6 @@ MonoBehaviour:
     Clips:
     - {fileID: 8300000, guid: 5d0258bd338db154188a96b7dba1f705, type: 3}
     Volume: 1
-    PitchShift: 0
     MaxPitchChange: 0
     Delay: 0
     Loop: 0

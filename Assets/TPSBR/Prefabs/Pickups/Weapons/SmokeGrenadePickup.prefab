@@ -58,6 +58,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -140,15 +143,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1843211028072736839, guid: 0dbfb718ef6139344b73ef9132f120d6, type: 3}
     - target: {fileID: 6727132063299379605, guid: 17580a6c632e05f409085fc2dd33f57c, type: 3}
+      propertyPath: Flags
+      value: 264449
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727132063299379605, guid: 17580a6c632e05f409085fc2dd33f57c, type: 3}
       propertyPath: SortKey
       value: 3852472934
       objectReference: {fileID: 0}
     - target: {fileID: 6727132063299379605, guid: 17580a6c632e05f409085fc2dd33f57c, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[0]'
       value: -7732603451325048418
       objectReference: {fileID: 0}
     - target: {fileID: 6727132063299379605, guid: 17580a6c632e05f409085fc2dd33f57c, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[1]'
       value: -518527705876276821
       objectReference: {fileID: 0}
     - target: {fileID: 8017275584695234895, guid: 17580a6c632e05f409085fc2dd33f57c, type: 3}

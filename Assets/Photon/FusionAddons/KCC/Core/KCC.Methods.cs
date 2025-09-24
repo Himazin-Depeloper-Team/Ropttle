@@ -68,7 +68,7 @@ namespace Fusion.Addons.KCC
 				data.AddLookRotation(pitchDelta, yawDelta);
 			}
 
-			SynchronizeTransform(data, false, true, false);
+			SynchronizeTransform(data, false, true, false, false);
 		}
 
 		/// <summary>
@@ -86,7 +86,7 @@ namespace Fusion.Addons.KCC
 				data.AddLookRotation(pitchDelta, yawDelta, minPitch, maxPitch);
 			}
 
-			SynchronizeTransform(data, false, true, false);
+			SynchronizeTransform(data, false, true, false, false);
 		}
 
 		/// <summary>
@@ -122,7 +122,7 @@ namespace Fusion.Addons.KCC
 				data.SetLookRotation(pitch, yaw);
 			}
 
-			SynchronizeTransform(data, false, true, false);
+			SynchronizeTransform(data, false, true, false, false);
 		}
 
 		/// <summary>
@@ -140,7 +140,7 @@ namespace Fusion.Addons.KCC
 				data.SetLookRotation(pitch, yaw, minPitch, maxPitch);
 			}
 
-			SynchronizeTransform(data, false, true, false);
+			SynchronizeTransform(data, false, true, false, false);
 		}
 
 		/// <summary>
@@ -176,7 +176,7 @@ namespace Fusion.Addons.KCC
 				data.SetLookRotation(lookRotation, preservePitch, preserveYaw);
 			}
 
-			SynchronizeTransform(data, false, true, false);
+			SynchronizeTransform(data, false, true, false, false);
 		}
 
 		/// <summary>
@@ -362,35 +362,48 @@ namespace Fusion.Addons.KCC
 		}
 
 		/// <summary>
-		/// Sets <c>KCCData.BasePosition</c>, <c>KCCData.DesiredPosition</c>, <c>KCCData.TargetPosition</c> and immediately synchronize Transform and Rigidbody components.
-		/// Also sets <c>KCCData.HasTeleported</c> flag to <c>true</c> and clears <c>KCCData.IsSteppingUp</c> and <c>KCCData.IsSnappingToGround</c>.
-		/// Calling this from within a processor stage effectively stops any pending move steps and forces KCC to update hits with new overlap query.
+		/// Sets positions in current <c>KCCData</c> and immediately synchronizes Transform and Rigidbody components.
+		/// Teleporting from within a processor stage effectively stops any pending move steps and forces KCC to update hits with new overlap query.
 		/// Changes done in render will vanish with next fixed update.
 		/// </summary>
-		public void SetPosition(Vector3 position)
+		/// <param name="position">New position, propagates to <c>KCCData.BasePosition</c>, <c>KCCData.DesiredPosition</c>, <c>KCCData.TargetPosition</c>.</param>
+		/// <param name="teleport">Teleporting sets <c>KCCData.HasTeleported</c> and clears <c>KCCData.IsSteppingUp</c> and <c>KCCData.IsSnappingToGround</c>.</param>
+		/// <param name="allowAntiJitter">Allows anti-jitter feature. This has effect only in render.</param>
+		/// <param name="moveRigidbody">Use Rigidbody.MovePosition() instead of setting Rigidbody.position directly.</param>
+		public void SetPosition(Vector3 position, bool teleport = true, bool allowAntiJitter = false, bool moveRigidbody = false)
 		{
 			KCCData data = _renderData;
 
-			data.BasePosition       = position;
-			data.DesiredPosition    = position;
-			data.TargetPosition     = position;
-			data.HasTeleported      = true;
-			data.IsSteppingUp       = false;
-			data.IsSnappingToGround = false;
+			data.BasePosition    = position;
+			data.DesiredPosition = position;
+			data.TargetPosition  = position;
 
-			if (IsInFixedUpdate == true)
+			if (teleport == true)
 			{
-				data = _fixedData;
-
-				data.BasePosition       = position;
-				data.DesiredPosition    = position;
-				data.TargetPosition     = position;
 				data.HasTeleported      = true;
 				data.IsSteppingUp       = false;
 				data.IsSnappingToGround = false;
 			}
 
-			SynchronizeTransform(data, true, false, false);
+			if (IsInFixedUpdate == true)
+			{
+				data = _fixedData;
+
+				data.BasePosition    = position;
+				data.DesiredPosition = position;
+				data.TargetPosition  = position;
+
+				if (teleport == true)
+				{
+					data.HasTeleported      = true;
+					data.IsSteppingUp       = false;
+					data.IsSnappingToGround = false;
+				}
+
+				allowAntiJitter = false;
+			}
+
+			SynchronizeTransform(data, true, false, allowAntiJitter, moveRigidbody);
 		}
 
 		/// <summary>

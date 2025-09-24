@@ -144,10 +144,6 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5872025486481888424, guid: c91e068e99c0df240b4477d2d2f9e96b, type: 3}
-      propertyPath: _shrinkSteps
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872025486481888424, guid: c91e068e99c0df240b4477d2d2f9e96b, type: 3}
       propertyPath: _startRadius
       value: 115
       objectReference: {fileID: 0}

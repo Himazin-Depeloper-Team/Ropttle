@@ -50,6 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 694671438
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 1
   Flags: 2305
   NestedObjects: []
   NetworkedBehaviours:

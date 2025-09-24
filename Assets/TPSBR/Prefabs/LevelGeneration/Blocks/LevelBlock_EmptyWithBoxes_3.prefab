@@ -1941,8 +1941,6 @@ MonoBehaviour:
   _itemBoxPositions:
   - {fileID: 3113063153393753540}
   - {fileID: 5497238072873444054}
-  _interestProviderSpawnPoint: {fileID: 0}
-  _interestProviderPrefab: {fileID: 0}
   _alwaysSpawnBoxes: 0
   _minSpawnedBoxes: 0
   _maxSpawnedBoxes: 1

@@ -108,6 +108,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 3358793680726467782}
   - {fileID: 1462166693620786889}
+  ForceRemoteRenderTimeframe: 0
 --- !u!114 &3358793680726467782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0.15
   SyncScale: 0
   SyncParent: 0
   _autoAOIOverride: 1

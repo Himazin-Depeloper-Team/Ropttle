@@ -83,6 +83,11 @@ namespace TPSBR
 			}
 		}
 
+		public NetworkPrefabId GetPrefabId(NetworkRunner runner, NetworkObjectGuid prefabGuid)
+		{
+			return runner.Prefabs.GetId(prefabGuid);
+		}
+
 		private void AssignContext(NetworkObject instance)
 		{
 			for (int i = 0, count = instance.NetworkedBehaviours.Length; i < count; i++)

@@ -64,6 +64,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 0
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2561
   NestedObjects: []
   NetworkedBehaviours:
@@ -149,6 +151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 0
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2561
   NestedObjects: []
   NetworkedBehaviours:
@@ -276,6 +280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 0
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2561
   NestedObjects: []
   NetworkedBehaviours:
@@ -345,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 5330363111403703559}
   _pickupPrefabs:
-  - {fileID: 0}
+  - {fileID: 1450828408321133776, guid: 9e99cf4e2146b094abd90b7dccd1cdf8, type: 3}
   _refillTime: 40
 --- !u!114 &982738913069788947
 MonoBehaviour:
@@ -361,6 +367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 0
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2561
   NestedObjects: []
   NetworkedBehaviours:
@@ -446,6 +454,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 0
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2561
   NestedObjects: []
   NetworkedBehaviours:
@@ -531,6 +541,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 0
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2561
   NestedObjects: []
   NetworkedBehaviours:
@@ -683,7 +695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 5880320237387506984}
   _pickupPrefabs:
-  - {fileID: 0}
+  - {fileID: 6715959599694521071, guid: 0a542ea6c4d73284696f38edbd148a59, type: 3}
   _refillTime: 40
 --- !u!114 &6228939062614503504
 MonoBehaviour:
@@ -699,6 +711,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 0
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2561
   NestedObjects: []
   NetworkedBehaviours:
@@ -784,6 +798,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 0
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2561
   NestedObjects: []
   NetworkedBehaviours:
@@ -1091,6 +1107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 0
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2561
   NestedObjects: []
   NetworkedBehaviours:
@@ -1160,7 +1178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 7682744223287116002}
   _pickupPrefabs:
-  - {fileID: 0}
+  - {fileID: 2715304033126495746, guid: 1d7da68e9c437244a94b4a3d6bafb095, type: 3}
   _refillTime: 40
 --- !u!114 &3564566411982095640
 MonoBehaviour:
@@ -1176,6 +1194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 0
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2561
   NestedObjects: []
   NetworkedBehaviours:

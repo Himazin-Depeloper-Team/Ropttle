@@ -124,10 +124,6 @@ PrefabInstance:
       value: Smoke Grenade
       objectReference: {fileID: 0}
     - target: {fileID: 5660633326291460765, guid: 13b0c1881e42b7244a39d267e8307c74, type: 3}
-      propertyPath: _nameShortcut
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5660633326291460765, guid: 13b0c1881e42b7244a39d267e8307c74, type: 3}
       propertyPath: _dummyLoadedProjectile
       value: 
       objectReference: {fileID: 6197529300688489982}

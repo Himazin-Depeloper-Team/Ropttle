@@ -100,7 +100,7 @@ MonoBehaviour:
   SphereRadius: 0.5
   CapsuleRadius: 0
   BoxExtents: {x: 0, y: 0, z: 0}
-  CapsuleExtents: 0
+  CapsuleHeight: 0
   Offset: {x: 0, y: 0, z: 0}
   Root: {fileID: 3962141833970342432}
   GizmosColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 1322018053
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2305
   NestedObjects: []
   NetworkedBehaviours:

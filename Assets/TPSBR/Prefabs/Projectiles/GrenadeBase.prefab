@@ -277,6 +277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 766522789
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 2305
   NestedObjects: []
   NetworkedBehaviours:
@@ -508,7 +510,6 @@ MonoBehaviour:
     Clips:
     - {fileID: 8300000, guid: efd8bb2cef33e6d4b9bfc91dd3f7ff08, type: 3}
     Volume: 1
-    PitchShift: 0
     MaxPitchChange: 0.2
     Delay: 0
     Loop: 0

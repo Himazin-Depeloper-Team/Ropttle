@@ -141,7 +141,11 @@ namespace TPSBR
 
 			_dynamicObjectID = default;
 
+			#if UNITY_6000_0_OR_NEWER
 			_networkRigidbody.Rigidbody.linearVelocity = Vector3.zero;
+			#else
+			_networkRigidbody.Rigidbody.velocity = Vector3.zero;
+			#endif
 			_networkRigidbody.Rigidbody.angularVelocity = Vector3.zero;
 		}
 

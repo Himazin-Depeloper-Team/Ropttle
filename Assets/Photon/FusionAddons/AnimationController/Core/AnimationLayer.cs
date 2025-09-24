@@ -44,9 +44,14 @@ namespace Fusion.Addons.AnimationController
 		public float FadingSpeed { get { return _fadingSpeed; } protected set { _fadingSpeed = value; } }
 
 		/// <summary>
-		/// Interpolated weight used in render update to get smooth animations.
+		/// Interpolated weight used in render update.
 		/// </summary>
 		public float InterpolatedWeight { get { return _interpolatedWeight; } protected set { _interpolatedWeight = value; } }
+
+		/// <summary>
+		/// Interpolated fading speed used in render update.
+		/// </summary>
+		public float InterpolatedFadingSpeed { get { return _interpolatedFadingSpeed; } protected set { _interpolatedFadingSpeed = value; } }
 
 		// PRIVATE MEMBERS
 
@@ -65,6 +70,7 @@ namespace Fusion.Addons.AnimationController
 		private float                  _fadingSpeed;
 		private float                  _cachedWeight;
 		private float                  _interpolatedWeight;
+		private float                  _interpolatedFadingSpeed;
 		private ProfilerMarker         _profilerMarker;
 
 		// PUBLIC METHODS
@@ -271,12 +277,13 @@ namespace Fusion.Addons.AnimationController
 		/// </summary>
 		public void Spawned()
 		{
-			_mixer              = AnimationMixerPlayable.Create(_controller.Graph);
-			_port               = _controller.Mixer.AddInput(_mixer, 0, _initialWeight);
-			_weight             = _initialWeight;
-			_cachedWeight       = _initialWeight;
-			_fadingSpeed        = 0.0f;
-			_interpolatedWeight = _initialWeight;
+			_mixer                   = AnimationMixerPlayable.Create(_controller.Graph);
+			_port                    = _controller.Mixer.AddInput(_mixer, 0, _initialWeight);
+			_weight                  = _initialWeight;
+			_fadingSpeed             = 0.0f;
+			_cachedWeight            = _initialWeight;
+			_interpolatedWeight      = _initialWeight;
+			_interpolatedFadingSpeed = _fadingSpeed;
 
 			_controller.Mixer.SetLayerAdditive((uint)_port, _isAdditive);
 
@@ -630,7 +637,8 @@ namespace Fusion.Addons.AnimationController
 
 		// IAnimationFadingProvider INTERFACE
 
-		float IAnimationFadingProvider.FadingSpeed { get { return _fadingSpeed; } set { _fadingSpeed = value; } }
+		float IAnimationFadingProvider.FadingSpeed             { get { return _fadingSpeed;             } set { _fadingSpeed             = value; } }
+		float IAnimationFadingProvider.InterpolatedFadingSpeed { get { return _interpolatedFadingSpeed; } set { _interpolatedFadingSpeed = value; } }
 
 		// PRIVATE METHODS
 

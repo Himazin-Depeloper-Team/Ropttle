@@ -2,7 +2,8 @@ namespace Fusion.Addons.AnimationController
 {
 	public unsafe interface IAnimationFadingProvider
 	{
-		float FadingSpeed { get; set; }
+		float FadingSpeed             { get; set; }
+		float InterpolatedFadingSpeed { get; set; }
 	}
 
 	public unsafe sealed class AnimationFadingProvider : AnimationPropertyProvider<IAnimationFadingProvider>
@@ -28,7 +29,7 @@ namespace Fusion.Addons.AnimationController
 
 		protected override void Interpolate(IAnimationFadingProvider item, ref AnimationInterpolationInfo interpolationInfo)
 		{
-			item.FadingSpeed = interpolationInfo.Alpha < 0.5f ? interpolationInfo.FromBuffer.ReinterpretState<float>(interpolationInfo.Offset) : interpolationInfo.ToBuffer.ReinterpretState<float>(interpolationInfo.Offset);
+			item.InterpolatedFadingSpeed = interpolationInfo.Alpha < 0.5f ? interpolationInfo.FromBuffer.ReinterpretState<float>(interpolationInfo.Offset) : interpolationInfo.ToBuffer.ReinterpretState<float>(interpolationInfo.Offset);
 			++interpolationInfo.Offset;
 		}
 	}

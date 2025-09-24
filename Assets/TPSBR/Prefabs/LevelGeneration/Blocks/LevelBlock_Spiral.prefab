@@ -4493,8 +4493,6 @@ MonoBehaviour:
   - {fileID: 2559035229619162401}
   - {fileID: 6287377141414498302}
   - {fileID: 6237762803719576299}
-  _interestProviderSpawnPoint: {fileID: 0}
-  _interestProviderPrefab: {fileID: 0}
   _alwaysSpawnBoxes: 1
   _minSpawnedBoxes: 1
   _maxSpawnedBoxes: 3

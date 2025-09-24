@@ -5084,7 +5084,6 @@ MonoBehaviour:
     InputAuthorityBehavior: 1
     StateAuthorityBehavior: 0
     ProxyInterpolationMode: 0
-    ForcePredictedLookRotation: 0
     AllowClientTeleports: 0
     Processors:
     - {fileID: 3227591614157517285}
@@ -5097,6 +5096,7 @@ MonoBehaviour:
     NetworkedInteractions: 2
     CompressNetworkPosition: 0
     ForceSingleOverlapQuery: 1
+    ForcePredictedLookRotation: 0
     SuppressConvexMeshColliders: 0
 --- !u!114 &57946675724828624
 MonoBehaviour:
@@ -5161,7 +5161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slots: []
   _initialWeapons:
-  - {fileID: 0}
+  - {fileID: 1170080945414801375, guid: 5d68242c12e06a947a581866d14ccacc, type: 3}
   _dropWeaponImpulse: {x: 5, y: 5, z: 10}
   _hitMask:
     serializedVersion: 2

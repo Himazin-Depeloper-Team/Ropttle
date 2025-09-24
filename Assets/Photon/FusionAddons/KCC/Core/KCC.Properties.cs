@@ -152,6 +152,13 @@ namespace Fusion.Addons.KCC
 
 					return IsInFixedUpdate;
 				}
+				if (Object.IsInSimulation == true)
+				{
+					if (_settings.ForcePredictedLookRotation == true)
+						return true;
+
+					return IsInFixedUpdate;
+				}
 
 				return false;
 			}

@@ -1730,7 +1730,6 @@ MonoBehaviour:
     Clips:
     - {fileID: 8300000, guid: 26977920d3b2ecd45b4abd220a5500bd, type: 3}
     Volume: 0.35
-    PitchShift: 0
     MaxPitchChange: 0.05
     Delay: 0.1
     Loop: 0
@@ -1743,7 +1742,6 @@ MonoBehaviour:
     Clips:
     - {fileID: 8300000, guid: 26977920d3b2ecd45b4abd220a5500bd, type: 3}
     Volume: 0.35
-    PitchShift: 0
     MaxPitchChange: 0.05
     Delay: 0.1
     Loop: 0

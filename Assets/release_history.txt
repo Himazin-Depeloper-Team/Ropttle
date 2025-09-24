@@ -1,5 +1,14 @@
 Fusion BR200 Release History
 
+2.0.2
+- Refresh of Unity Game Server Hosting (Multiplay) integration guide.
+- Updated Fusion SDK to 2.0.4 Stable 880.
+- Updated Animation Controller addon to 2.0.7.
+- Updated Interest Management addon to 2.0.3.
+- Updated Physics addon to latest 2.0.1.
+- Updated Advanced KCC addon to 2.0.18.
+- Unity 6 compatibility fixes.
+
 2.0.1
 - Updated Fusion SDK to 2.0.0 Stable 834.
 - Updated Animation Controller addon to 2.0.6.

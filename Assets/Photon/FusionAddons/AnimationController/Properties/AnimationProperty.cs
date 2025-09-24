@@ -16,7 +16,9 @@ namespace Fusion.Addons.AnimationController
 	//
 	//  private void InterpolateMyProperty(AnimationInterpolationInfo interpolationInfo)
 	//  {
-	//      // Interpolation
+	//      // Write interpolation here.
+	//      // Use a different property for interpolated value.
+	//      // For example: InterpolatedMyProperty
 	//  }
 	//
 	[AttributeUsage(AttributeTargets.Field)]

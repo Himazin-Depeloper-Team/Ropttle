@@ -12,10 +12,12 @@
     "InvokeRenderInBatchMode": false,
     "NetworkIdIsObjectName": false,
     "HideNetworkObjectInactivityGuard": false,
+    "AllowClientServerModesInWebGL": false,
     "Simulation": {
         "InputDataWordCount": 0,
         "ReplicationFeatures": 3,
         "InputTransferMode": 2,
+        "SimulationUpdateTimeMode": 0,
         "PlayerCount": 200,
         "TickRateSelection": {
             "Client": 60,

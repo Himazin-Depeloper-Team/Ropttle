@@ -80,14 +80,18 @@ namespace Fusion.Addons.KCC
 		/// <summary>
 		/// Immediately synchronize Transform and Rigidbody based on current state.
 		/// </summary>
-		public void SynchronizeTransform(bool synchronizePosition, bool synchronizeRotation, bool allowAntiJitter = true)
+		/// <param name="synchronizePosition">Propagates KCCData.TargetPosition to Transform and Rigidbody components.</param>
+		/// <param name="synchronizeRotation">Propagates KCCData.TransformRotation to Transform component.</param>
+		/// <param name="allowAntiJitter">Allows anti-jitter feature. This has effect only in render.</param>
+		/// <param name="moveRigidbody">Use Rigidbody.MovePosition() instead of setting Rigidbody.position directly.</param>
+		public void SynchronizeTransform(bool synchronizePosition, bool synchronizeRotation, bool allowAntiJitter = true, bool moveRigidbody = false)
 		{
 			if (IsInFixedUpdate == true)
 			{
 				allowAntiJitter = false;
 			}
 
-			SynchronizeTransform(Data, synchronizePosition, synchronizeRotation, allowAntiJitter);
+			SynchronizeTransform(Data, synchronizePosition, synchronizeRotation, allowAntiJitter, moveRigidbody);
 		}
 
 		/// <summary>
@@ -294,7 +298,7 @@ namespace Fusion.Addons.KCC
 			if (Object.HasStateAuthority == false)
 			{
 				ReadNetworkData();
-				SynchronizeTransform(_fixedData, true, true, false);
+				SynchronizeTransform(_fixedData, true, true, false, false);
 			}
 
 			_renderData = new KCCData();
@@ -416,7 +420,7 @@ namespace Fusion.Addons.KCC
 
 			if (_fixedData.IsActive == true)
 			{
-				SynchronizeTransform(_fixedData, true, true, false);
+				SynchronizeTransform(_fixedData, true, true, false, false);
 			}
 
 			_lastPredictedFixedTick = latestServerTick;
@@ -475,7 +479,7 @@ namespace Fusion.Addons.KCC
 
 			if (_fixedData.IsActive == true)
 			{
-				SynchronizeTransform(_fixedData, true, true, false);
+				SynchronizeTransform(_fixedData, true, true, false, true);
 			}
 
 			PublishFixedData(false, true);
@@ -494,12 +498,13 @@ namespace Fusion.Addons.KCC
 
 			Trace(nameof(OnRenderUpdateInternal));
 
-			int   frame     = Time.frameCount;
-			float deltaTime = Runner.DeltaTime;
+			int   frame          = Time.frameCount;
+			float deltaTime      = Runner.DeltaTime;
+			bool  isInSimulation = Object.IsInSimulation;
 
 			_renderData.Frame = frame;
 
-			if (Object.IsInSimulation == true && Object.RenderTimeframe != RenderTimeframe.Remote)
+			if (isInSimulation == true && Object.RenderTimeframe != RenderTimeframe.Remote)
 			{
 				_simulatedMoveMarker.Begin();
 
@@ -557,7 +562,7 @@ namespace Fusion.Addons.KCC
 
 				if (_renderData.IsActive == true)
 				{
-					SynchronizeTransform(_renderData, true, true, true);
+					SynchronizeTransform(_renderData, true, true, true, true);
 				}
 
 				_simulatedMoveMarker.End();
@@ -572,23 +577,27 @@ namespace Fusion.Addons.KCC
 				}
 				else
 				{
-					_fixedData.Frame           = frame;
-					_fixedData.Tick            = Object.LastReceiveTick;
-					_fixedData.Alpha           = 1.0f;
-					_fixedData.Time            = _fixedData.Tick * deltaTime;
-					_fixedData.DeltaTime       = deltaTime;
-					_fixedData.UpdateDeltaTime = deltaTime;
+					if (isInSimulation == false)
+					{
+						_fixedData.Frame           = frame;
+						_fixedData.Tick            = Object.LastReceiveTick;
+						_fixedData.Alpha           = 1.0f;
+						_fixedData.Time            = _fixedData.Tick * deltaTime;
+						_fixedData.DeltaTime       = deltaTime;
+						_fixedData.UpdateDeltaTime = deltaTime;
 
-					ReadNetworkData();
+						ReadNetworkData();
+					}
 
 					InterpolateNetworkData();
 
+					RefreshCollider(_renderData.IsActive);
+
 					if (_renderData.IsActive == true)
 					{
-						RefreshCollider(true);
 						CacheProcessors(_renderData);
 						InvokeOnInterpolate(_renderData);
-						SynchronizeTransform(_renderData, true, true, false);
+						SynchronizeTransform(_renderData, true, true, false, true);
 					}
 				}
 
@@ -638,7 +647,7 @@ namespace Fusion.Addons.KCC
 							}
 #endif
 							_predictionError = _lastRenderPosition - expectedRenderPosition;
-							if (_predictionError.sqrMagnitude >= _settings.TeleportThreshold * _settings.TeleportThreshold)
+							if (_predictionError.sqrMagnitude >= 1.0f)
 							{
 								_predictionError = default;
 								return;
@@ -692,16 +701,21 @@ namespace Fusion.Addons.KCC
 			data.BasePosition    = basePosition;
 			data.DesiredPosition = desiredPosition;
 
+			SetBaseProperties(data);
+
 			if (data.IsActive == false)
 			{
 				data.ClearTransientProperties();
 				ForceRemoveAllCollisions(data);
 				ForceRemoveAllHits(data);
+
+				data.RealVelocity = default;
+				data.RealSpeed    = default;
+
 				return;
 			}
 
 			CacheProcessors(data);
-			SetBaseProperties(data);
 
 			ExecuteStageInternal<IBeginMove, BeginMove>(_beginMove, data);
 
@@ -710,6 +724,9 @@ namespace Fusion.Addons.KCC
 				data.ClearTransientProperties();
 				ForceRemoveAllCollisions(data);
 				ForceRemoveAllHits(data);
+
+				data.RealVelocity = default;
+				data.RealSpeed    = default;
 
 				ExecuteStageInternal<IEndMove, EndMove>(_endMove, data);
 
@@ -732,6 +749,8 @@ namespace Fusion.Addons.KCC
 				data.BasePosition    = basePosition;
 				data.DesiredPosition = desiredPosition;
 				data.TargetPosition  = desiredPosition;
+				data.RealVelocity    = extrapolationVelocity;
+				data.RealSpeed       = data.RealVelocity.magnitude;
 
 				ExecuteStageInternal<IEndMove, EndMove>(_endMove, data);
 
@@ -754,7 +773,7 @@ namespace Fusion.Addons.KCC
 			data.ExternalDelta   = default;
 
 			bool    hasFinished           = false;
-			float   radiusMultiplier      = Mathf.Clamp(_settings.CCDRadiusMultiplier, 0.25f, 0.75f);
+			float   radiusMultiplier      = Mathf.Clamp(_settings.CCDRadiusMultiplier, 0.1f, 0.9f);
 			float   maxDeltaMagnitude     = _settings.Radius * (radiusMultiplier + 0.1f);
 			float   optimalDeltaMagnitude = _settings.Radius * radiusMultiplier;
 			Vector3 nonTeleportedPosition = data.TargetPosition;
@@ -862,15 +881,23 @@ namespace Fusion.Addons.KCC
 				return;
 
 			KCCData currentFixedData = _fixedData;
-			if (currentFixedData.HasTeleported == false)
+			if (currentFixedData.HasTeleported == true)
+			{
+				data.BasePosition    = currentFixedData.BasePosition;
+				data.DesiredPosition = currentFixedData.DesiredPosition;
+				data.TargetPosition  = currentFixedData.TargetPosition;
+				data.LookPitch       = currentFixedData.LookPitch;
+				data.LookYaw         = currentFixedData.LookYaw;
+			}
+			else
 			{
 				KCCData previousFixedData = GetHistoryData(currentFixedData.Tick - 1);
 				if (previousFixedData != null)
 				{
 					float alpha = data.Alpha;
 
-					data.BasePosition    = Vector3.Lerp(previousFixedData.BasePosition, currentFixedData.BasePosition, alpha) + _predictionError;
-					data.DesiredPosition = Vector3.Lerp(previousFixedData.DesiredPosition, currentFixedData.DesiredPosition, alpha) + _predictionError;
+					data.BasePosition    = previousFixedData.TargetPosition + _predictionError;
+					data.DesiredPosition = currentFixedData.TargetPosition + _predictionError;
 					data.TargetPosition  = Vector3.Lerp(previousFixedData.TargetPosition, currentFixedData.TargetPosition, alpha) + _predictionError;
 					data.RealVelocity    = Vector3.Lerp(previousFixedData.RealVelocity, currentFixedData.RealVelocity, alpha);
 					data.RealSpeed       = Mathf.Lerp(previousFixedData.RealSpeed, currentFixedData.RealSpeed, alpha);
@@ -882,6 +909,42 @@ namespace Fusion.Addons.KCC
 					}
 				}
 			}
+
+			data.HasTeleported = false;
+			int historyTeleportTick = currentFixedData.Tick;
+			while (historyTeleportTick > _networkContext.LastInterpolationTeleportCounter)
+			{
+				KCCData historyData = GetHistoryData(historyTeleportTick);
+				if (historyData == null)
+					break;
+
+				if (historyData.HasTeleported == true)
+				{
+					data.HasTeleported = true;
+					break;
+				}
+
+				--historyTeleportTick;
+			}
+			_networkContext.LastInterpolationTeleportCounter = currentFixedData.Tick;
+
+			data.JumpFrames = 0;
+			int historyJumpTick = currentFixedData.Tick;
+			while (historyJumpTick > _networkContext.LastInterpolationJumpCounter)
+			{
+				KCCData historyData = GetHistoryData(historyJumpTick);
+				if (historyData == null)
+					break;
+
+				if (historyData.HasJumped == true)
+				{
+					data.JumpFrames = 1;
+					break;
+				}
+
+				--historyJumpTick;
+			}
+			_networkContext.LastInterpolationJumpCounter = currentFixedData.Tick;
 
 			CacheProcessors(data);
 			InvokeOnInterpolate(data);
@@ -926,7 +989,7 @@ namespace Fusion.Addons.KCC
 
 				CapsuleOverlap(_extendedOverlapInfo, data, data.TargetPosition, _settings.Radius, _settings.Height, baseOverlapQueryExtent, _settings.CollisionLayerMask, QueryTriggerInteraction.Collide);
 
-				data.TargetPosition = ResolvePenetration(_extendedOverlapInfo, data, data.BasePosition, data.TargetPosition, hasJumped == false, data.MaxPenetrationSteps, 3, true);
+				ResolvePenetration(_extendedOverlapInfo, data, data.MaxPenetrationSteps, hasJumped == false, true);
 
 				UpdateHits(data, _extendedOverlapInfo, baseHitsOverlapQuery);
 			}
@@ -941,18 +1004,31 @@ namespace Fusion.Addons.KCC
 			ExecuteStageInternal<IAfterMoveStep, AfterMoveStep>(_afterMoveStep, data);
 		}
 
+		[Obsolete("Use SynchronizeTransform(KCCData data, bool synchronizePosition, bool synchronizeRotation, bool allowAntiJitter, bool moveRigidBody)")]
 		private void SynchronizeTransform(KCCData data, bool synchronizePosition, bool synchronizeRotation, bool allowAntiJitter)
+		{
+			SynchronizeTransform(data, synchronizePosition, synchronizeRotation, allowAntiJitter, false);
+		}
+
+		private void SynchronizeTransform(KCCData data, bool synchronizePosition, bool synchronizeRotation, bool allowAntiJitter, bool moveRigidBody)
 		{
 			if (synchronizePosition == true)
 			{
 				Vector3 targetPosition = data.TargetPosition;
 
-				_rigidbody.position = targetPosition;
+				if (moveRigidBody == true)
+				{
+					_rigidbody.MovePosition(targetPosition);
+				}
+				else
+				{
+					_rigidbody.position = targetPosition;
+				}
 
 				if (allowAntiJitter == true && _activeFeatures.Has(EKCCFeature.AntiJitter) == true && _settings.AntiJitterDistance.IsZero() == false)
 				{
 					Vector3 targetDelta = targetPosition - _lastAntiJitterPosition;
-					if (targetDelta.sqrMagnitude < _settings.TeleportThreshold * _settings.TeleportThreshold)
+					if (targetDelta.sqrMagnitude < 1.0f)
 					{
 						targetPosition = _lastAntiJitterPosition;
 

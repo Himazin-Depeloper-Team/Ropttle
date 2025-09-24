@@ -209,7 +209,6 @@ MonoBehaviour:
   _selectedSound:
     Clips: []
     Volume: 1
-    PitchShift: 0
     MaxPitchChange: 0
     Delay: 0
     Loop: 0
@@ -480,7 +479,6 @@ MonoBehaviour:
   _customClickSound:
     Clips: []
     Volume: 1
-    PitchShift: 0
     MaxPitchChange: 0
     Delay: 0
     Loop: 0

@@ -130,3 +130,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226753
+  packageName: BR200 - Battle Royale Multiplayer - Photon Fusion
+  packageVersion: 2.0.2
+  assetPath: Assets/3rdParty/PBR_Military_Pack/PBR_Weapons_Pack/Models/Automatic_Rifle05/Mesh/Automatic_Rifle_05_Mesh.FBX
+  uploadId: 718661

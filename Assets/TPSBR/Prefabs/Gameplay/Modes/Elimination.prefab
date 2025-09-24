@@ -51,7 +51,7 @@ MonoBehaviour:
   ScorePerDeath: 0
   ScorePerSuicide: -10
   RespawnTime: 8
-  TimeLimit: 0
+  TimeLimit: 900
   BackfillTimeLimit: 300
   Announcements:
   - {fileID: 11400000, guid: a3a8e4e180588c14c843d18f5d340964, type: 2}
@@ -85,3 +85,4 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 7530579074752114227}
+  ForceRemoteRenderTimeframe: 0

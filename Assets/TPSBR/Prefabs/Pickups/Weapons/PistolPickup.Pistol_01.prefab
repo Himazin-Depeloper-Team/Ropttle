@@ -151,11 +151,11 @@ PrefabInstance:
       value: 3546145489
       objectReference: {fileID: 0}
     - target: {fileID: 6727132063299379605, guid: 3a8bda49c86a2ba479189c50e7fb0b37, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[0]'
       value: 7250423493530358375
       objectReference: {fileID: 0}
     - target: {fileID: 6727132063299379605, guid: 3a8bda49c86a2ba479189c50e7fb0b37, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[1]'
       value: 295635235069046186
       objectReference: {fileID: 0}
     - target: {fileID: 8017275584695234895, guid: 3a8bda49c86a2ba479189c50e7fb0b37, type: 3}

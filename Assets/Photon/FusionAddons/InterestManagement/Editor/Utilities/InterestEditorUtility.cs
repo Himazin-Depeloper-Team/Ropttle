@@ -44,36 +44,63 @@ namespace Fusion.Addons.InterestManagement.Editor
 				if (DrawButton($"Draw Interest Cells", InterestUtility.DrawInterestCells) == true)
 				{
 					InterestUtility.DrawInterestCells = !InterestUtility.DrawInterestCells;
+
+					if (InterestUtility.DrawInterestCells == false)
+					{
+						InterestUtility.DrawSamplePositions = false;
+					}
 				}
 
 				if (DrawButton($"Draw Sample Positions", InterestUtility.DrawSamplePositions) == true)
 				{
 					InterestUtility.DrawSamplePositions = !InterestUtility.DrawSamplePositions;
+
+					if (InterestUtility.DrawSamplePositions == true)
+					{
+						InterestUtility.DrawInterestCells = true;
+					}
 				}
 			}
 			EditorGUILayout.EndHorizontal();
 
+			if (InterestUtility.DrawPlayerInterest == true || InterestUtility.DrawInterestCells == true || InterestUtility.DrawSamplePositions == true)
+			{
+				EditorGUILayout.Space();
+			}
+
 			if (InterestUtility.DrawPlayerInterest == true)
 			{
-				InterestUtility.InterestObjectGizmoColor = EditorGUILayout.ColorField(InterestUtility.InterestObjectGizmoColor);
-				InterestUtility.InterestObjectGizmoSize  = EditorGUILayout.Slider(InterestUtility.InterestObjectGizmoSize, 0.0f, 4.0f);
+				EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+				{
+					GUILayout.Label("Player Interest", EditorStyles.boldLabel);
+
+					InterestUtility.InterestObjectGizmoColor = EditorGUILayout.ColorField("Gizmo Color", InterestUtility.InterestObjectGizmoColor);
+					InterestUtility.InterestObjectGizmoSize  = EditorGUILayout.Slider("Gizmo Size", InterestUtility.InterestObjectGizmoSize, 0.0f, 4.0f);
+				}
+				EditorGUILayout.EndVertical();
 			}
 
 			if (InterestUtility.DrawInterestCells == true || InterestUtility.DrawSamplePositions == true)
 			{
-				EditorGUILayout.BeginHorizontal();
+				EditorGUILayout.BeginVertical(EditorStyles.helpBox);
 				{
-					DrawCellSizeButton(8);
-					DrawCellSizeButton(16);
-					DrawCellSizeButton(24);
-					DrawCellSizeButton(32);
-					DrawCellSizeButton(48);
-					DrawCellSizeButton(64);
-				}
-				EditorGUILayout.EndHorizontal();
+					GUILayout.Label("Interest Cells", EditorStyles.boldLabel);
 
-				InterestUtility.InterestCellGizmoColor = EditorGUILayout.ColorField(InterestUtility.InterestCellGizmoColor);
-				InterestUtility.InterestCellGizmoSize  = EditorGUILayout.Slider(InterestUtility.InterestCellGizmoSize, 0.0f, 1.0f);
+					EditorGUILayout.BeginHorizontal();
+					{
+						DrawCellSizeButton(8);
+						DrawCellSizeButton(16);
+						DrawCellSizeButton(24);
+						DrawCellSizeButton(32);
+						DrawCellSizeButton(48);
+						DrawCellSizeButton(64);
+					}
+					EditorGUILayout.EndHorizontal();
+
+					InterestUtility.InterestCellGizmoColor = EditorGUILayout.ColorField("Gizmo Color", InterestUtility.InterestCellGizmoColor);
+					InterestUtility.InterestCellGizmoSize  = EditorGUILayout.Slider("Gizmo Size", InterestUtility.InterestCellGizmoSize, 0.0f, 1.0f);
+				}
+				EditorGUILayout.EndVertical();
 			}
 		}
 

@@ -1,6 +1,12 @@
 Photon Fusion Interest Management Addon - Release History
 
-Last tested with Fusion SDK 2.0.0 Build 834
+Last tested with Fusion SDK 2.0.4 Stable 880
+
+Version 2.0.3
+- Improved PlayerInterestView inspector.
+
+Version 2.0.2
+- Editor scripts compatibility with Fusion SDK 2.0.2.
 
 Version 2.0.1
 - Added last player interest update tick.

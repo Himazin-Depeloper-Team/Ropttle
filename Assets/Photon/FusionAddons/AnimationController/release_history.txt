@@ -1,8 +1,13 @@
 Photon Fusion Animation Controller Addon - Release History
 
-Last tested with Fusion SDK 2.0.0 Stable 834
+Last tested with Fusion SDK 2.0.4 Stable 880
 
-2.0.6
+Version 2.0.7
+- Separated fading speed property for FUN (FadingSpeed) and Render (InterpolatedFadingSpeed) in AnimationFadingProvider.
+- Separated clip ID property for FUN (ClipID) and Render (InterpolatedClipID) in AnimationClipIDProvider.
+- Above fixes ensure that interpolated values from Render() won't propagate to FUN() in next frame.
+
+Version 2.0.6
 - Removed temporary fix for incorrect interpolation data - fixed in 2.0.0 Stable 834.
 
 Version 2.0.5

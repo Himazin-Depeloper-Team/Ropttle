@@ -34,4 +34,4 @@ MonoBehaviour:
   - DisplayName: USA, East
     Region: us
     Icon: {fileID: 0}
-  QueueName: Queue-Build-240920
+  QueueName: battleRoyale

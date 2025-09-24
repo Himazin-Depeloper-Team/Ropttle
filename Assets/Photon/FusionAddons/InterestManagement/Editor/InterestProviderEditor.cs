@@ -16,9 +16,9 @@ namespace Fusion.Addons.InterestManagement.Editor
 
 		public override void OnInspectorGUI()
 		{
-			FusionEditorGUI.InjectScriptHeaderDrawer(serializedObject);
-
+			PrepareOnInspectorGUI();
 			DrawInspectorGUI();
+			DrawEditorButtons();
 
 			InterestProvider interestProvider = target as InterestProvider;
 

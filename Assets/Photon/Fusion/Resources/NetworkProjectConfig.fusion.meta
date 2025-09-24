@@ -13,3 +13,10 @@ ScriptedImporter:
   PrefabOptions:
     UnloadPrefabOnReleasingLastInstance: 0
     UnloadUnusedPrefabsOnShutdown: 0
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226753
+  packageName: BR200 - Battle Royale Multiplayer - Photon Fusion
+  packageVersion: 2.0.2
+  assetPath: Assets/Photon/Fusion/Resources/NetworkProjectConfig.fusion
+  uploadId: 718661

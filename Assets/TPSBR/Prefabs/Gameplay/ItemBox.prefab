@@ -539,13 +539,13 @@ MonoBehaviour:
     Pickups:
     - Pickup: {fileID: 1214334607122330860, guid: 515d0a7122c2eca4cb0841021a46116a, type: 3}
       Probability: 30
-    - Pickup: {fileID: 2715304033126495746, guid: 1d7da68e9c437244a94b4a3d6bafb095, type: 3}
+    - Pickup: {fileID: 6715959599694521071, guid: 0a542ea6c4d73284696f38edbd148a59, type: 3}
       Probability: 30
     - Pickup: {fileID: 644603425118098869, guid: c750a29126ddfd7488f13f77091ed1aa, type: 3}
       Probability: 30
-    - Pickup: {fileID: 1450828408321133776, guid: 9e99cf4e2146b094abd90b7dccd1cdf8, type: 3}
+    - Pickup: {fileID: 2715304033126495746, guid: 1d7da68e9c437244a94b4a3d6bafb095, type: 3}
       Probability: 30
-    - Pickup: {fileID: 1753923265918319972, guid: 93ff156a0ef76084c918a240b780304b, type: 3}
+    - Pickup: {fileID: 1450828408321133776, guid: 9e99cf4e2146b094abd90b7dccd1cdf8, type: 3}
       Probability: 30
     - Pickup: {fileID: 8389084916135308144, guid: fa21fb8dc9db56f4fb9089135a6973f2, type: 3}
       Probability: 30
@@ -555,8 +555,6 @@ MonoBehaviour:
       Probability: 50
     - Pickup: {fileID: 2234597929257676308, guid: 197f5bfc88b9b304bb7698c8f5a2af5d, type: 3}
       Probability: 50
-    - Pickup: {fileID: 8389084916135308144, guid: fa21fb8dc9db56f4fb9089135a6973f2, type: 3}
-      Probability: 20
     - Pickup: {fileID: 8389084916135308144, guid: fa21fb8dc9db56f4fb9089135a6973f2, type: 3}
       Probability: 20
   _audioEffect: {fileID: 8046687650521345275}

@@ -2,7 +2,8 @@ namespace Fusion.Addons.AnimationController
 {
 	public unsafe interface IAnimationClipIDProvider
 	{
-		int ClipID { get; set; }
+		int ClipID             { get; set; }
+		int InterpolatedClipID { get; set; }
 	}
 
 	public unsafe sealed class AnimationClipIDProvider : AnimationPropertyProvider<IAnimationClipIDProvider>
@@ -28,7 +29,7 @@ namespace Fusion.Addons.AnimationController
 
 		protected override void Interpolate(IAnimationClipIDProvider item, ref AnimationInterpolationInfo interpolationInfo)
 		{
-			item.ClipID = interpolationInfo.Alpha < 0.5f ? interpolationInfo.FromBuffer.ReinterpretState<int>(interpolationInfo.Offset) : interpolationInfo.ToBuffer.ReinterpretState<int>(interpolationInfo.Offset);
+			item.InterpolatedClipID = interpolationInfo.Alpha < 0.5f ? interpolationInfo.FromBuffer.ReinterpretState<int>(interpolationInfo.Offset) : interpolationInfo.ToBuffer.ReinterpretState<int>(interpolationInfo.Offset);
 			++interpolationInfo.Offset;
 		}
 	}

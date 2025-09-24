@@ -199,6 +199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 2609528540
   ObjectInterest: 0
+  _DestroyWhenStateAuthorityLeaves: 0
+  _AllowStateAuthorityOverride: 0
   Flags: 264449
   NestedObjects: []
   NetworkedBehaviours:
@@ -285,7 +287,6 @@ MonoBehaviour:
     Clips:
     - {fileID: 8300000, guid: af5ece47ac7f6d741b0b1402c52eac1f, type: 3}
     Volume: 0.2
-    PitchShift: 0
     MaxPitchChange: 0.1
     Delay: 0
     Loop: 0
@@ -298,7 +299,6 @@ MonoBehaviour:
     Clips:
     - {fileID: 8300000, guid: 42321e5846e61c44ba561f9b3d499f70, type: 3}
     Volume: 1
-    PitchShift: 0
     MaxPitchChange: 0
     Delay: 0
     Loop: 0
@@ -311,7 +311,6 @@ MonoBehaviour:
     Clips:
     - {fileID: 8300000, guid: 42321e5846e61c44ba561f9b3d499f70, type: 3}
     Volume: 1
-    PitchShift: 0
     MaxPitchChange: 0
     Delay: 0
     Loop: 0
@@ -331,7 +330,6 @@ MonoBehaviour:
     Clips:
     - {fileID: 8300000, guid: fc5b6cb057057e243b92fc5eadf08bb4, type: 3}
     Volume: 1
-    PitchShift: 0
     MaxPitchChange: 0.1
     Delay: 0
     Loop: 0
@@ -520,7 +518,6 @@ MonoBehaviour:
   _defaultSetup:
     Clips: []
     Volume: 1
-    PitchShift: 0
     MaxPitchChange: 0
     Delay: 0
     Loop: 0

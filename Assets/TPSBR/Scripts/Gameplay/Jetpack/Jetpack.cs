@@ -141,7 +141,7 @@ namespace TPSBR
 			UpdateLocalState();
 
 			// Ensure no weapon can be held
-			//_agent.Weapons.DisarmCurrentWeapon();
+			_agent.Weapons.DisarmCurrentWeapon();
 
 			float consumption = FullThrust == true ? _fullThrustConsumption : _idleThrustConsumption;
 			_fuel -= consumption * Runner.DeltaTime;

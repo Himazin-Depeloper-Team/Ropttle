@@ -8,6 +8,9 @@ namespace Fusion.Addons.KCC
 		public KCC         KCC;
 		public KCCData     Data;
 		public KCCSettings Settings;
+
+		public int LastInterpolationJumpCounter     = -1;
+		public int LastInterpolationTeleportCounter = -1;
 	}
 
 	// This file contains implementation related to network synchronization and interpolation based on network buffers.
@@ -144,7 +147,6 @@ namespace Fusion.Addons.KCC
 
 			KCCNetworkProperties.ReadTransforms(fromBuffer, toBuffer, out Vector3 fromPosition, out Vector3 toPosition, out float fromLookPitch, out float toLookPitch, out float fromLookYaw, out float toLookYaw);
 
-			bool    hasTeleported  = false;
 			Vector3 targetPosition = Vector3.Lerp(fromPosition, toPosition, alpha);
 			float   lookPitch      = Mathf.Lerp(fromLookPitch, toLookPitch, alpha);
 			float   lookYaw        = KCCUtility.InterpolateRange(fromLookYaw, toLookYaw, -180.0f, 180.0f, alpha);
@@ -154,38 +156,25 @@ namespace Fusion.Addons.KCC
 			int ticks = toBuffer.Tick - fromBuffer.Tick;
 			if (ticks > 0)
 			{
-				Vector3 positionDifference = toPosition - fromPosition;
-				if (positionDifference.sqrMagnitude > _settings.TeleportThreshold * _settings.TeleportThreshold * ticks * ticks)
-				{
-					hasTeleported  = true;
-					targetPosition = toPosition;
-					lookPitch      = toLookPitch;
-					lookYaw        = toLookYaw;
-				}
-				else
-				{
-					realVelocity = positionDifference / (_fixedData.DeltaTime * ticks);
-					realSpeed    = realVelocity.magnitude;
-				}
+				realVelocity = (toPosition - fromPosition) / (Runner.DeltaTime * ticks);
+				realSpeed    = realVelocity.magnitude;
 			}
 
-			_fixedData.HasTeleported   = hasTeleported;
-			_fixedData.BasePosition    = fromPosition;
-			_fixedData.DesiredPosition = toPosition;
-			_fixedData.TargetPosition  = targetPosition;
-			_fixedData.LookPitch       = lookPitch;
-			_fixedData.LookYaw         = lookYaw;
-			_fixedData.RealVelocity    = realVelocity;
-			_fixedData.RealSpeed       = realSpeed;
+			_renderData.BasePosition    = fromPosition;
+			_renderData.DesiredPosition = toPosition;
+			_renderData.TargetPosition  = targetPosition;
+			_renderData.LookPitch       = lookPitch;
+			_renderData.LookYaw         = lookYaw;
+			_renderData.RealVelocity    = realVelocity;
+			_renderData.RealSpeed       = realSpeed;
 
-			_renderData.HasTeleported   = _fixedData.HasTeleported;
-			_renderData.BasePosition    = _fixedData.BasePosition;
-			_renderData.DesiredPosition = _fixedData.DesiredPosition;
-			_renderData.TargetPosition  = _fixedData.TargetPosition;
-			_renderData.LookPitch       = _fixedData.LookPitch;
-			_renderData.LookYaw         = _fixedData.LookYaw;
-			_renderData.RealVelocity    = _fixedData.RealVelocity;
-			_renderData.RealSpeed       = _fixedData.RealSpeed;
+			_fixedData.BasePosition    = _renderData.BasePosition;
+			_fixedData.DesiredPosition = _renderData.DesiredPosition;
+			_fixedData.TargetPosition  = _renderData.TargetPosition;
+			_fixedData.LookPitch       = _renderData.LookPitch;
+			_fixedData.LookYaw         = _renderData.LookYaw;
+			_fixedData.RealVelocity    = _renderData.RealVelocity;
+			_fixedData.RealSpeed       = _renderData.RealSpeed;
 
 			_transform.SetPositionAndRotation(_renderData.TargetPosition, _renderData.TransformRotation);
 		}

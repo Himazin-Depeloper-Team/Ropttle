@@ -11,7 +11,7 @@ namespace TPSBR
 		{
 			List<Assembly> assemblies = new List<Assembly>();
 			assemblies.Add(typeof(TypeUtility).Assembly);
-			assemblies.Add(typeof(Fusion.ILogger).Assembly);
+			assemblies.Add(typeof(Fusion.Log).Assembly);
 			assemblies.Add(typeof(Fusion.SessionProperty).Assembly);
 			assemblies.Add(typeof(Fusion.NetworkRunner).Assembly);
 			assemblies.Add(typeof(Fusion.Sockets.NetAddress).Assembly);

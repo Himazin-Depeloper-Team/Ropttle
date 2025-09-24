@@ -95,28 +95,12 @@ PrefabInstance:
       value: Weapons.Sniper_01
       objectReference: {fileID: 0}
     - target: {fileID: 2817010484915668333, guid: 8eacd0aa9ca52034fbbe47c975d739c1, type: 3}
-      propertyPath: _reloadTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2817010484915668333, guid: 8eacd0aa9ca52034fbbe47c975d739c1, type: 3}
       propertyPath: _displayName
       value: Schmidt
       objectReference: {fileID: 0}
     - target: {fileID: 2817010484915668333, guid: 8eacd0aa9ca52034fbbe47c975d739c1, type: 3}
-      propertyPath: _initialAmmo
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2817010484915668333, guid: 8eacd0aa9ca52034fbbe47c975d739c1, type: 3}
       propertyPath: _nameShortcut
       value: SCHM
-      objectReference: {fileID: 0}
-    - target: {fileID: 2817010484915668333, guid: 8eacd0aa9ca52034fbbe47c975d739c1, type: 3}
-      propertyPath: _maxWeaponAmmo
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 2817010484915668333, guid: 8eacd0aa9ca52034fbbe47c975d739c1, type: 3}
-      propertyPath: _maxMagazineAmmo
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2817010484915668333, guid: 8eacd0aa9ca52034fbbe47c975d739c1, type: 3}
       propertyPath: _fireSound.Clips.Array.data[0]
