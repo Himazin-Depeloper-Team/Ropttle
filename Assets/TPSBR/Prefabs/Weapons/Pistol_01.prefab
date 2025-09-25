@@ -36,6 +36,10 @@ PrefabInstance:
       propertyPath: _minFireDispersion
       value: 0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 2823422647949271355, guid: 2535781479f893d40abcaa4c4fc5ab58, type: 3}
+      propertyPath: _supressReloadWhileAimed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3893602942877553836, guid: 2535781479f893d40abcaa4c4fc5ab58, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -125,11 +129,11 @@ PrefabInstance:
       value: 323455984
       objectReference: {fileID: 0}
     - target: {fileID: 9152363575869057371, guid: 2535781479f893d40abcaa4c4fc5ab58, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[0]'
       value: -7752137439910270883
       objectReference: {fileID: 0}
     - target: {fileID: 9152363575869057371, guid: 2535781479f893d40abcaa4c4fc5ab58, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[1]'
       value: -3690052482431952774
       objectReference: {fileID: 0}
     m_RemovedComponents: []
