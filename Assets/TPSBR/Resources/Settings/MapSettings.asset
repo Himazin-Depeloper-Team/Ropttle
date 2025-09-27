@@ -62,6 +62,6 @@ MonoBehaviour:
     _displayName: Debug Game
     _description: Map used for development
     _image: {fileID: 21300000, guid: f3a98a44addd7bd4c920c80dcfd4eed3, type: 3}
-    _recommendedPlayers: 200
+    _recommendedPlayers: 20
     _maxPlayers: 200
     _showInMapSelection: 0
